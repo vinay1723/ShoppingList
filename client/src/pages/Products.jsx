@@ -19,7 +19,7 @@ function Products() {
     async function fetchProducts() {
       try {
         const res = await fetch(
-          "http://localhost:3000/api/v1/products/getproducts"
+          "https://shopping-list-serv.vercel.app/api/v1/products/getproducts"
         );
 
         if (!res.status) {

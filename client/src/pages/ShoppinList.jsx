@@ -11,7 +11,7 @@ function ShoppinList() {
     async function getMyList() {
       try {
         const res = await fetch(
-          "http://localhost:3000/api/v1/listproducts/getlistproducts",
+          "https://shopping-list-serv.vercel.app/api/v1/listproducts/getlistproducts",
           {
             method: "GET",
             credentials: "include",
