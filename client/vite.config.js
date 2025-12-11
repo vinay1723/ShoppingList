@@ -5,4 +5,5 @@ import eslint from "vite-plugin-eslint";
 
 export default defineConfig({
   plugins: [react(), tailwindcss(), eslint()],
+  base: process.env.VITE_BASE_PATH || "/ShoppingList/client",
 });
