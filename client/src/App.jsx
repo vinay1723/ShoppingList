@@ -1,23 +1,28 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import AppLayout from "./utils/AppLayout";
-import Products from "./pages/Products";
-import ShoppinList from "./pages/ShoppinList";
-import EditProduct from "./components/EditProduct";
-import Signup from "./pages/Signup";
-import Login from "./pages/Login";
+import { Suspense, lazy } from "react";
+
+const AppLayout = lazy(() => import("./utils/AppLayout"));
+const Products = lazy(() => import("./pages/Products"));
+const ShoppingList = lazy(() => import("./pages/ShoppinList"));
+const EditProduct = lazy(() => import("./components/EditProduct"));
+const Signup = lazy(() => import("./pages/Signup"));
+const Login = lazy(() => import("./pages/Login"));
+
 function App() {
   return (
     <div className="bg-white">
       <Router>
-        <Routes>
-          <Route path="/" element={<AppLayout />}>
-            <Route index path="/" element={<Products />}></Route>
-            <Route path="mylist" element={<ShoppinList />}></Route>
-            <Route path="mylist/:id" element={<EditProduct />}></Route>
-            <Route path="login" element={<Login />}></Route>
-            <Route path="signup" element={<Signup />}></Route>
-          </Route>
-        </Routes>
+        <Suspense fallback={<div className="p-4 text-center">Loading...</div>}>
+          <Routes>
+            <Route path="/" element={<AppLayout />}>
+              <Route index element={<Products />} />
+              <Route path="mylist" element={<ShoppingList />} />
+              <Route path="mylist/:id" element={<EditProduct />} />
+              <Route path="login" element={<Login />} />
+              <Route path="signup" element={<Signup />} />
+            </Route>
+          </Routes>
+        </Suspense>
       </Router>
     </div>
   );
